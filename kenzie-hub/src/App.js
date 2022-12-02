@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle/>
-      <ToastContainer position={toast.POSITION.TOP_RIGHT} autoClose={2000}/>
+      <ToastContainer position={toast.POSITION.TOP_RIGHT} autoClose={2000} theme="dark"/>
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={ <RegisterPage/>}/>

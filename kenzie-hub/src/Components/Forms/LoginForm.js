@@ -6,7 +6,7 @@ export const StyledForm = styled.form`
     border-radius: var(--radius);
     max-width: 100%;
     margin-top: 50px;
-    padding: 42px 22px;
+    padding: 42px 22px 90px 22px;
     gap: 22px;
 
     h1 {
@@ -19,6 +19,13 @@ export const StyledForm = styled.form`
         font-size: var(--headline);
         font-weight: var(--semibold);
         color: var(--grey1);
+    }
+
+    span {
+        font-size: var(--headline);
+        font-weight: var(--bold);
+        color: var(--negative);
+        text-align: right;
     }
 `
 

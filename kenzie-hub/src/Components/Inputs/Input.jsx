@@ -1,16 +1,16 @@
 import { StyledEye, StyledInput, StyledLabel, StyledSelect } from "./Inputs";
 import Eye from "../../Imgs/eye.png"
 
-export function Input ( { id, placeholder, type, text } ) {
+export function Input ( { id, placeholder, type, text, register } ) {
     return (
         <>
             <StyledLabel htmlFor={id}>{text}</StyledLabel>
-            <StyledInput id={id} placeholder={placeholder} type={type}/>
+            <StyledInput id={id} placeholder={placeholder} type={type} {...register}/>
         </>
     )
 }
 
-export function PasswordInput ( {placeholder, text, id} ) {
+export function PasswordInput ( {placeholder, text, id, register} ) {
     function changeType ( event ) {
         const input = event.target.previousSibling
         if (input.type === "password") {
@@ -22,7 +22,7 @@ export function PasswordInput ( {placeholder, text, id} ) {
     return (
         <>
             <StyledLabel htmlFor="passord">{text}</StyledLabel>
-            <StyledInput id={id} type="password" placeholder={placeholder}/>
+            <StyledInput id={id} type="password" placeholder={placeholder} {...register}/>
             {/* <StyledEye src={Eye} alt="show password icon" onClick={changeType}/> */}
         </>
     )

@@ -86,6 +86,14 @@ body {
   font-family: var(--family);
 }
 
+.toast {
+  background-color: var(--grey2);
+  font-size: var(--title3);
+  font-weight: var(--bold);
+  font-family: var(--family);
+  color: var(--grey0);
+}
+
 .page-size {
   height: 100%;
 }

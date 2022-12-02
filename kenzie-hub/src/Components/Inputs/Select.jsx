@@ -1,16 +1,15 @@
 import { StyledLabel, StyledSelect } from "./Inputs";
 
-export function SelectType () {
+export function SelectType ( { register } ) {
     return (
         <>
-            <StyledLabel>Selecionar módulo</StyledLabel>
-            <StyledSelect>
+            <StyledLabel htmlFor="course_module">Selecionar módulo</StyledLabel>
+            <StyledSelect {...register} id="course_module">
                     <option value="">Selecione um módulo</option>
-                    <option value="1">Primeiro módulo</option>
-                    <option value="2">Segundo módulo</option>
-                    <option value="3">Terceiro módulo</option>
-                    <option value="4">Quarto módulo</option>
-                    <option value="5">Quinto módulo</option>
+                    <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo</option>
+                    <option value="Segundo módulo (Frontend Avançado)">Segundo módulo</option>
+                    <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo</option>
+                    <option value="Quarto módulo (Backend Avançado)">Quarto módulo</option>
             </StyledSelect>
         </>
     )
@@ -19,8 +18,8 @@ export function SelectType () {
 export function SelectLevel () {
     return (
         <>
-            <StyledLabel>Selecionar o nível</StyledLabel>
-            <StyledSelect>
+            <StyledLabel htmlFor="level">Selecionar o nível</StyledLabel>
+            <StyledSelect id="level">
                     <option value="">Selecione um nível</option>
                     <option value="1">Iniciante</option>
                     <option value="2">Intermediário</option>

@@ -13,7 +13,11 @@ export function DialogButton ( { text, setDialogOpen } ) {
 }
 
 export function BlackButton ( { text } ) {
-    return <BlackButtons>{text}</BlackButtons>
+    const navigate = useNavigate()
+    function goToRegister () {
+        navigate("/register")
+    }
+    return <BlackButtons onClick={goToRegister}>{text}</BlackButtons>
 }
 
 export function SmallButton ( { text } ) {
