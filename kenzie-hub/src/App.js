@@ -12,9 +12,9 @@ function App() {
       <GlobalStyle/>
       <ToastContainer position={toast.POSITION.TOP_RIGHT} autoClose={2000} theme="dark"/>
       <Routes>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/register" element={ <RegisterPage/>}/>
-        <Route path="/" element={<HomePage/>}/>
+        <Route path="/" element={<LoginPage/>}/>
       </Routes>
     </div>
   );

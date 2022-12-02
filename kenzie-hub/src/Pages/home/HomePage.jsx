@@ -26,22 +26,23 @@ export function HomePage () {
         getUser()
     }, [])
     
-    // const user = JSON.parse(localStorage.getItem("KenzieHubUser"))
-    // const userName = user.name[0].toUpperCase() + user.name.substring(1)
-    // const userModule = user.course_module
-    // const techs = user.techs
-
-    if (token !== null){
+    if (token !== null || localUser !== null){
         return (
             <div>
                 <PageHeader></PageHeader>
                 <NameHeader user={user}></NameHeader>
-                <List techs={techs} setTechs={setTechs}></List>
+                <List token={token} techs={techs} setTechs={setTechs}></List>
                 {/* <NameHeader userName={userName} userModule={userModule}></NameHeader>
                 <List techs={techs}></List> */}
             </div>
         )
     } else {
-        navigate("/login")
+        navigate("/")
     }
+    
+    // const user = JSON.parse(localStorage.getItem("KenzieHubUser"))
+    // const userName = user.name[0].toUpperCase() + user.name.substring(1)
+    // const userModule = user.course_module
+    // const techs = user.techs
+
 }

@@ -17,4 +17,11 @@ export const NameHeaders = styled.div`
         color: var(--grey1);
         font-weight: var(--semibold);
     }
+
+    @media (max-width: 750px) {
+        > div {
+            flex-direction: column;
+            gap: 22px;
+        }
+    }
 `

@@ -5,17 +5,17 @@ export function PrimaryButton ( { text } ) {
     return <BigButtons>{text}</BigButtons>
 }
 
-export function DialogButton ( { text, setDialogOpen, techs, setTechs } ) {
-    const newTech = [...techs, {
-        title: "teste",
-        status: "Iniciante"
-    }]
+export function DialogButton ( { text, setDialogOpen, techs, setTechs, register, handleNewTech, handleSubmit } ) {
+    // const newTech = [...techs, {
+    //     title: "teste",
+    //     status: "Iniciante"
+    // }]
 
-    function closeDialog () {
-        setTechs(newTech)
-        setDialogOpen(false)
-    }
-    return <BigButtons onClick={closeDialog}>{text}</BigButtons>
+    // function closeDialog () {
+    //     setTechs(newTech)
+    //     // setDialogOpen(false)
+    // }
+    return <BigButtons onClick={handleSubmit(handleNewTech)}>{text}</BigButtons>
 }
 
 export function BlackButton ( { text } ) {
@@ -32,7 +32,7 @@ export function SmallButton ( { text } ) {
     function GoBack ( ) {
         localStorage.removeItem("KenzieHubToken")
         localStorage.removeItem("KenzieHubUser")
-        navigate("/login")
+        navigate("/")
     }
     return <SmallButtons onClick={GoBack}>{text}</SmallButtons>
 }

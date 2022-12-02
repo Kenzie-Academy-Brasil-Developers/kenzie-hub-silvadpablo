@@ -30,7 +30,7 @@ export function LoginForm() {
         toast.success(`Bem vindo, ${response.data.user.name}`, {
           className: "toast"
         })
-        navigate("/")
+        navigate("/home")
       } else {
         throw response
       }

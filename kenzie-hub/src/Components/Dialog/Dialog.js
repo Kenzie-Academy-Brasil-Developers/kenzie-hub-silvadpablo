@@ -20,7 +20,7 @@ export const Dialogs = styled.dialog`
     }
 
     .diag-body {
-        gap: 22px;
+        /* gap: 22px; */
         padding: 20px;
     }
 
@@ -32,5 +32,17 @@ export const Dialogs = styled.dialog`
         padding: 20px;
         color: var(--grey1);
         cursor: pointer;
+    }
+
+    button {
+        margin-top: 22px;
+    }
+
+    span {
+        font-size: var(--headline);
+        font-weight: var(--bold);
+        color: var(--negative);
+        text-align: right;
+        margin-top: 10px;
     }
 `

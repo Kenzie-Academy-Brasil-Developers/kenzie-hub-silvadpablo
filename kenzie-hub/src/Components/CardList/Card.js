@@ -32,4 +32,10 @@ export const Card = styled.li`
     img {
         cursor: pointer;
     }
+
+    @media(max-width: 550px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
 `

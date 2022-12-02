@@ -103,6 +103,24 @@ body {
   padding: 50px 0px;
 }
 
+@media (max-width: 975px) {
+  .form-container{
+    width: 40%;
+  }
+}
+
+@media (max-width: 850px) {
+  .form-container{
+    width: 60%;
+  }
+}
+
+@media (max-width: 450px) {
+  .form-container{
+    width: 90%;
+  }
+}
+
 .form-container img {
   scale: 50%;
 }

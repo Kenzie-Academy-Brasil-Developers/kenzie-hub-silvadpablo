@@ -5,7 +5,7 @@ import { NoCard } from "./Card.jsx";
 import { EachCard } from "./Card.jsx";
 import { Lists } from "./Lists";
 
-export function List ( { techs, setTechs } ) {
+export function List ( { techs, setTechs, token } ) {
     const [dialogOpen, setDialogOpen] = useState(false)
 
     function openDialog () {
@@ -14,7 +14,7 @@ export function List ( { techs, setTechs } ) {
 
     return (
         <Lists className="flex flex-col page-container">
-            <Dialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} techs={techs} setTechs={setTechs}></Dialog>
+            <Dialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} token={token} techs={techs} setTechs={setTechs}></Dialog>
             <div className="list-header flex justify-between items-center">
                 <h2>Tecnologias</h2>
                 <AddButtons onClick={openDialog}>+</AddButtons>

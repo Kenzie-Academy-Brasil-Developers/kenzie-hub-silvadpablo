@@ -25,15 +25,25 @@ export const StyledLabel = styled.label`
     color: var(--grey0);
     font-weight: var(--regular);
     text-align: left;
+    margin: 22px 0;
 `
 
-export const StyledEye = styled.img`
-    width: 25px;
-    height: 30px;
+export const StyledEye = styled.span`
+    width: 0;
+    height: 0;
     position: relative;
-    right: -23vw;
-    bottom: 55px;
-    cursor: pointer;
+    width: 100%;
+    
+    .fa-eye {
+        color: var(--grey1);
+        width: 20px;
+        height: 20px;
+        background-color: var(--grey2);
+        position: absolute;
+        right: 15px;
+        bottom: 20px;
+        cursor: pointer;
+    }
 `
 
 export const StyledSelect = styled.select`
@@ -44,6 +54,7 @@ export const StyledSelect = styled.select`
     border-radius: var(--radius);
     border: 1px solid var(--grey2);
     outline: none;
+    
     
     option {
         background-color: var(--grey2);
