@@ -19,7 +19,6 @@ export function HomePage () {
             const response = await api.get(`users/${userId}`)
             setUser(response.data)
             return user
-            // console.log(user)
         } catch (error) {
             console.log(error)
         }
@@ -35,17 +34,9 @@ export function HomePage () {
                 <PageHeader></PageHeader>
                 <NameHeader user={user}></NameHeader>
                 <List token={token} techs={techs} setTechs={setTechs} getUser={getUser} setUser={setUser} user={user}></List>
-                {/* <NameHeader userName={userName} userModule={userModule}></NameHeader>
-                <List techs={techs}></List> */}
             </div>
         )
     } else {
         navigate("/")
     }
-    
-    // const user = JSON.parse(localStorage.getItem("KenzieHubUser"))
-    // const userName = user.name[0].toUpperCase() + user.name.substring(1)
-    // const userModule = user.course_module
-    // const techs = user.techs
-
 }
