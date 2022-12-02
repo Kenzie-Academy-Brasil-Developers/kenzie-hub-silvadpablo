@@ -21,7 +21,7 @@ export function RegisterForm() {
       toast.success("Conta criada com successo", {
         className: "toast"
       })
-      navigate("/login")
+      navigate("/")
     } catch (error) {
       const message = error.response.data.message
       if (Array.isArray(message)){

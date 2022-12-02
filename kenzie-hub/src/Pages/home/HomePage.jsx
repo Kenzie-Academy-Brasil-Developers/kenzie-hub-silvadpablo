@@ -12,17 +12,20 @@ export function HomePage () {
     const [user, setUser] = useState(localUser)
     const userId = localUser.id
     const [techs, setTechs] = useState(localUser.techs)
+
+
+    async function getUser () {
+        try {
+            const response = await api.get(`users/${userId}`)
+            setUser(response.data)
+            return user
+            // console.log(user)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     useEffect(() => {
-        async function getUser () {
-            try {
-                const response = await api.get(`users/${userId}`)
-                setUser(response.data)
-                // console.log(user)
-            } catch (error) {
-                console.log(error)
-            }
-        }
         getUser()
     }, [])
     
@@ -31,7 +34,7 @@ export function HomePage () {
             <div>
                 <PageHeader></PageHeader>
                 <NameHeader user={user}></NameHeader>
-                <List token={token} techs={techs} setTechs={setTechs}></List>
+                <List token={token} techs={techs} setTechs={setTechs} getUser={getUser} setUser={setUser} user={user}></List>
                 {/* <NameHeader userName={userName} userModule={userModule}></NameHeader>
                 <List techs={techs}></List> */}
             </div>
