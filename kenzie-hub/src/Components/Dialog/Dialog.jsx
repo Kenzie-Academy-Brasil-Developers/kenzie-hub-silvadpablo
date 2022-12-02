@@ -3,7 +3,7 @@ import { Input } from "../Inputs/Input";
 import { SelectLevel } from "../Inputs/Select";
 import { Dialogs } from "./Dialog";
 
-export function Dialog ( { dialogOpen, setDialogOpen } ) {
+export function Dialog ( { dialogOpen, setDialogOpen, techs, setTechs } ) {
     
     function closeDialog () {
         setDialogOpen(false)
@@ -19,7 +19,7 @@ export function Dialog ( { dialogOpen, setDialogOpen } ) {
                 <div className="diag-body flex flex-col">
                     <Input type="text" id="name" placeholder="Digite o nome da tecnologia" text="Nome"/>
                     <SelectLevel></SelectLevel>
-                    <DialogButton text="Cadastrar Tecnologia" setDialogOpen={setDialogOpen}></DialogButton>
+                    <DialogButton text="Cadastrar Tecnologia" setDialogOpen={setDialogOpen} techs={techs} setTechs={setTechs}></DialogButton>
                 </div>
             </div>
         </Dialogs>

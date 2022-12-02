@@ -7,32 +7,42 @@ import { StyledForm } from "./LoginForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { loginSchema } from "./loginSchema.js";
+import { api } from "../../services/api.js";
+import { useState } from "react";
 
 export function LoginForm() {
   const navigate = useNavigate();
+  // const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(false)
   
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema)
   })
 
   async function handleLogin(data) {
-    console.log(data)
+    try {
+      const response = await api.post("sessions", data)
+      setLoading(true)
+      if (response.request.statusText === "OK") {
+        localStorage.setItem("KenzieHubToken", response.data.token)
+        localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
+        // setUser(response.data.user)
+        toast.success(`Bem vindo, ${response.data.user.name}`, {
+          className: "toast"
+        })
+        navigate("/")
+      } else {
+        throw response
+      }
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        className: "toast"
+      })
+    } finally {
+      setLoading(false)
+    }
 
-
-    navigate("/")
-    toast.success("Entrou", {
-      className: "toast"
-    })
     // const buttonText = event.nativeEvent.submitter.textContent
-    // console.log(data)
-    // if (buttonText === "Entrar"){
-    //   navigate("/")
-    //   toast.success("Entrou", {
-    //     className: "toast"
-    //   })
-    // } else {
-    //   navigate("/register")
-    // }
   }
 
   return (
@@ -43,7 +53,11 @@ export function LoginForm() {
         {errors.email && <span>{errors.email.message}</span>}
         <PasswordInput id="password" type="password" text="Senha" placeholder="Digite aqui a sua senha" register={register("password")}/>
         {errors.password && <span>{errors.password.message}</span>}
-        <PrimaryButton id="loginButton" type="submit" text="Entrar"></PrimaryButton>
+        { (loading === true) ?
+           <PrimaryButton id="loginButton" type="submit" text="Entrando"></PrimaryButton>
+           :
+           <PrimaryButton id="loginButton" type="submit" text="Entrar"></PrimaryButton>
+        }
         <p>Ainda não possui uma conta?</p>
       </StyledForm>
         <div className="flex justify-center">

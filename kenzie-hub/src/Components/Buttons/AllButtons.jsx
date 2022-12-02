@@ -5,8 +5,14 @@ export function PrimaryButton ( { text } ) {
     return <BigButtons>{text}</BigButtons>
 }
 
-export function DialogButton ( { text, setDialogOpen } ) {
+export function DialogButton ( { text, setDialogOpen, techs, setTechs } ) {
+    const newTech = [...techs, {
+        title: "teste",
+        status: "Iniciante"
+    }]
+
     function closeDialog () {
+        setTechs(newTech)
         setDialogOpen(false)
     }
     return <BigButtons onClick={closeDialog}>{text}</BigButtons>
@@ -23,7 +29,9 @@ export function BlackButton ( { text } ) {
 export function SmallButton ( { text } ) {
     const navigate = useNavigate()
 
-    function GoBack ( event ) {
+    function GoBack ( ) {
+        localStorage.removeItem("KenzieHubToken")
+        localStorage.removeItem("KenzieHubUser")
         navigate("/login")
     }
     return <SmallButtons onClick={GoBack}>{text}</SmallButtons>

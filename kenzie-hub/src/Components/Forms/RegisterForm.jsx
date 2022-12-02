@@ -16,9 +16,8 @@ export function RegisterForm() {
   })
 
   async function HandleRegister(data) {
-    const body = data
     try {
-      const response = await api.post("users", body)
+      const response = await api.post("users", data)
       toast.success("Conta criada com successo", {
         className: "toast"
       })
@@ -38,7 +37,7 @@ export function RegisterForm() {
   }
 
   return (
-    <StyledRegisterForm onSubmit={handleSubmit(HandleRegister)} className="flex flex-col">
+    <StyledRegisterForm className="flex flex-col" onSubmit={handleSubmit(HandleRegister)} noValidate>
       <h1>Crie sua conta</h1>
       <p>Rápido e grátis, vamos nessa</p>
       <Input register={register("name")}id="name" type="name" text="Nome" placeholder="Digite aqui o seu nome"/>
@@ -48,8 +47,11 @@ export function RegisterForm() {
       <PasswordInput register={register("password")} id="password" type="password" text="Senha" placeholder="Digite aqui a sua senha"/>
       {errors.password && <span>{errors.password.message}</span>}
       <PasswordInput register={register("confirmPassword")} id="confirmPassword" type="confirmPassword" text="Confirmar senha" placeholder="Digite novamente sua senha"/>
+      {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
       <Input register={register("bio")} id="bio" type="text" text="Bio" placeholder="Fale sobre você"/>
+      {errors.bio && <span>{errors.bio.message}</span>}
       <Input register={register("contact")} id="contact" type="text" text="Contato" placeholder="Opção de contato"/>
+      {errors.contact && <span>{errors.contact.message}</span>}
       <SelectType register={register("course_module")}></SelectType>
       {errors.course_module && <span>{errors.course_module.message}</span>}
       <PrimaryButton type="submit" text="Cadastrar"></PrimaryButton>
