@@ -6,6 +6,8 @@ export const Dialogs = styled.dialog`
     border: none;
     padding: 0px;
     border-radius: var(--radius);
+    position: absolute;
+    bottom: 25%;
 
     .wrapper {
         max-width: 100%;
@@ -45,4 +47,17 @@ export const Dialogs = styled.dialog`
         text-align: right;
         margin-top: 10px;
     }
+
+    @media(max-width: 850px) {
+        width: 50%;
+    }
+
+    @media(max-width: 550px) {
+        width: 70%;
+    }
+
+    @media(max-width: 375px) {
+        width: 90%;
+    }
+
 `
