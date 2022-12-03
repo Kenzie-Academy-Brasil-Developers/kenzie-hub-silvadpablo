@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { BlackButton, PrimaryButton } from "../Buttons/AllButtons.jsx";
+import { PrimaryButton } from "../Buttons/AllButtons.jsx";
 import { Input, PasswordInput } from "../Inputs/Input.jsx";
 import { StyledForm } from "./LoginForm";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,7 @@ export function LoginForm() {
         localStorage.setItem("KenzieHubToken", response.data.token)
         localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
         // setUser(response.data.user)
-        toast.success(`Bem vindo, ${response.data.user.name}`, {
+        toast.success(`Que bom te ver, ${response.data.user.name}!`, {
           className: "toast"
         })
         navigate("/home")
@@ -59,10 +59,11 @@ export function LoginForm() {
            <PrimaryButton id="loginButton" type="submit" text="Entrar"></PrimaryButton>
         }
         <p>Ainda não possui uma conta?</p>
+        <Link to="/register">Cadastrar-se</Link>
       </StyledForm>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <BlackButton type="button" text="Cadastre-se"></BlackButton>
-        </div>
+        </div> */}
     </>
   )
 }

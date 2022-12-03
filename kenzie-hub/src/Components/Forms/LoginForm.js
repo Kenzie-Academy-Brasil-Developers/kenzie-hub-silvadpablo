@@ -7,7 +7,6 @@ export const StyledForm = styled.form`
     max-width: 100%;
     margin-top: 50px;
     padding: 42px 22px 90px 22px;
-    /* gap: 22px; */
 
     h1 {
         font-size: var(--title1);
@@ -29,6 +28,17 @@ export const StyledForm = styled.form`
         color: var(--negative);
         text-align: right;
         margin-top: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        background-color: var(--grey1);
+        color: var(--white);
+        padding: 10px 22px;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        margin-top: 22px;
     }
 
     > button {

@@ -26,8 +26,9 @@ export function Dialog ( { dialogOpen, setDialogOpen, token, techs, setTechs, ge
                 },
             })
             const upUser = await getUser()
-            setUser(upUser)
-            setTechs(upUser.techs)
+            // setUser(upUser)
+            // setTechs(upUser.techs)
+            localStorage.setItem("KenzieHubUser", JSON.stringify(upUser))
             setDialogOpen(false)
             toast.success("Tecnologia criada com sucesso", {
                 className: "toast"
