@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
@@ -5,6 +6,8 @@ import { api } from "../services/api";
 export const UserContext = createContext({})
 
 export function UserProvider ({ children }) {
+    const [user, setUser] = useState()
+    const [loading, setLoading] = useState(false)
 
     async function CreateUser ( data ) {
         try {
@@ -27,8 +30,33 @@ export function UserProvider ({ children }) {
             }
           }
     }
+
+    async function LoginUser ( data ) {
+        try {
+            const response = await api.post("sessions", data)
+            if (response.request.statusText === "OK") {
+                localStorage.setItem("KenzieHubToken", response.data.token)
+                localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
+                setUser(response.data.user)
+                toast.success(`Que bom te ver, ${response.data.user.name}!`, {
+                className: "toast"
+                })
+                setLoading(true)
+                return response
+            } else {
+                throw response
+            }
+        } catch (error) {
+            toast.error(error.response.data.message, {
+                className: "toast"
+            })
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
-        <UserContext.Provider value={{CreateUser}}>
+        <UserContext.Provider value={{CreateUser, LoginUser, user, loading}}>
             {children}
         </UserContext.Provider>
     )

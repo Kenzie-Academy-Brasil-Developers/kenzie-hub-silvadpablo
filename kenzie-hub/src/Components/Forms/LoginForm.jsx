@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PrimaryButton } from "../Buttons/AllButtons.jsx";
 import { Input, PasswordInput } from "../Inputs/Input.jsx";
@@ -7,42 +6,22 @@ import { StyledForm } from "./LoginForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { loginSchema } from "./loginSchema.js";
-import { api } from "../../services/api.js";
-import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/userContext.jsx";
 
 export function LoginForm() {
+  const { LoginUser, loading } = useContext(UserContext)
   const navigate = useNavigate();
-  // const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(false)
   
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema)
   })
 
-  async function handleLogin(data) {
-    try {
-      const response = await api.post("sessions", data)
-      setLoading(true)
-      if (response.request.statusText === "OK") {
-        localStorage.setItem("KenzieHubToken", response.data.token)
-        localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
-        // setUser(response.data.user)
-        toast.success(`Que bom te ver, ${response.data.user.name}!`, {
-          className: "toast"
-        })
-        navigate("/home")
-      } else {
-        throw response
-      }
-    } catch (error) {
-      toast.error(error.response.data.message, {
-        className: "toast"
-      })
-    } finally {
-      setLoading(false)
+  async function handleLogin ( data ) {
+    const response = await LoginUser( data )
+    if (response.statusText === "OK") {
+      navigate("/home")
     }
-
-    // const buttonText = event.nativeEvent.submitter.textContent
   }
 
   return (
@@ -61,9 +40,6 @@ export function LoginForm() {
         <p>Ainda não possui uma conta?</p>
         <Link to="/register">Cadastrar-se</Link>
       </StyledForm>
-        {/* <div className="flex justify-center">
-          <BlackButton type="button" text="Cadastre-se"></BlackButton>
-        </div> */}
     </>
   )
 }
