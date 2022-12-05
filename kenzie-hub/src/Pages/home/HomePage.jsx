@@ -1,39 +1,23 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { List } from "../../Components/CardList/List.jsx"
 import { NameHeader } from "../../Components/PageHeader/NameHeader.jsx"
 import { PageHeader } from "../../Components/PageHeader/PageHeader.jsx"
-import { api } from "../../services/api.js"
+import { TechProvider } from "../../Contexts/techContext.jsx"
+import { UserContext } from "../../Contexts/userContext.jsx"
 
 export function HomePage () {
+    const { user, token } = useContext(UserContext)
     const navigate = useNavigate()
-    const token = localStorage.getItem("KenzieHubToken")
-    const localUser = JSON.parse(localStorage.getItem("KenzieHubUser"))
-    const [user, setUser] = useState(localUser)
-    const userId = localUser.id
-    const [techs, setTechs] = useState(localUser.techs)
-
-
-    async function getUser () {
-        try {
-            const response = await api.get(`users/${userId}`)
-            setUser(response.data)
-            return user
-        } catch (error) {
-            console.log(error)
-        }
-    }
     
-    useEffect(() => {
-        getUser()
-    }, [])
-    
-    if (token !== null || localUser !== null){
+    if (token){
         return (
             <div>
                 <PageHeader></PageHeader>
                 <NameHeader user={user}></NameHeader>
-                <List token={token} techs={techs} setTechs={setTechs} getUser={getUser} setUser={setUser} user={user}></List>
+                    <TechProvider>
+                        <List></List>
+                    </TechProvider>
             </div>
         )
     } else {

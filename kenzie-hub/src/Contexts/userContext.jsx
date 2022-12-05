@@ -6,8 +6,9 @@ import { api } from "../services/api";
 export const UserContext = createContext({})
 
 export function UserProvider ({ children }) {
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [token, setToken] = useState(null)
 
     async function CreateUser ( data ) {
         try {
@@ -36,6 +37,7 @@ export function UserProvider ({ children }) {
             const response = await api.post("sessions", data)
             if (response.request.statusText === "OK") {
                 localStorage.setItem("KenzieHubToken", response.data.token)
+                setToken(response.data.token)
                 localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
                 setUser(response.data.user)
                 toast.success(`Que bom te ver, ${response.data.user.name}!`, {
@@ -56,7 +58,7 @@ export function UserProvider ({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{CreateUser, LoginUser, user, loading}}>
+        <UserContext.Provider value={{CreateUser, LoginUser, user, loading, token}}>
             {children}
         </UserContext.Provider>
     )
