@@ -5,17 +5,20 @@ import { RegisterPage } from './Pages/register/RegisterPage';
 import { HomePage } from './Pages/home/HomePage';
 import GlobalStyle from './Styles/GlobalStyles';
 import { toast, ToastContainer } from 'react-toastify';
+import { AuthProvider } from './Contexts/AuthContext';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle/>
       <ToastContainer position={toast.POSITION.TOP_RIGHT} autoClose={2000} theme="dark"/>
-      <Routes>
-        <Route path="/home" element={<HomePage/>}/>
-        <Route path="/register" element={ <RegisterPage/>}/>
-        <Route path="/" element={<LoginPage/>}/>
-      </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/home" element={<HomePage/>}/>
+            <Route path="/register" element={ <RegisterPage/>}/>
+            <Route path="/" element={<LoginPage/>}/>
+          </Routes>
+        </AuthProvider>
     </div>
   );
 }

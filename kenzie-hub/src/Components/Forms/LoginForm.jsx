@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { PrimaryButton } from "../Buttons/AllButtons.jsx";
 import { Input, PasswordInput } from "../Inputs/Input.jsx";
@@ -8,25 +8,19 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { loginSchema } from "./loginSchema.js";
 import { useContext } from "react";
 import { UserContext } from "../../Contexts/userContext.jsx";
+import { AuthContext } from "../../Contexts/AuthContext.jsx";
 
 export function LoginForm() {
-  const { LoginUser, loading } = useContext(UserContext)
-  const navigate = useNavigate();
+  const { loading } = useContext(UserContext)
+  const { LoginUser } = useContext(AuthContext)
   
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema)
   })
 
-  async function handleLogin ( data ) {
-    const response = await LoginUser( data )
-    if (response.statusText === "OK") {
-      navigate("/home")
-    }
-  }
-
   return (
     <>
-      <StyledForm onSubmit={handleSubmit(handleLogin)} className="flex flex-col">
+      <StyledForm onSubmit={handleSubmit(LoginUser)} className="flex flex-col">
         <h1>Login</h1>
         <Input id="email" type="email" text="Email" placeholder="Digite aqui o seu email" register={register("email")}/>
         {errors.email && <span>{errors.email.message}</span>}

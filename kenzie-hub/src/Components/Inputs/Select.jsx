@@ -15,11 +15,11 @@ export function SelectType ( { register } ) {
     )
 }
 
-export function SelectLevel ( {register} ) {
+export function SelectLevel ( {register, defaultValue} ) {
     return (
         <>
             <StyledLabel htmlFor="level">Selecionar o nível</StyledLabel>
-            <StyledSelect {...register} id="level">
+            <StyledSelect {...register} id="level" defaultValue={defaultValue}>
                     <option value="">Selecione um nível</option>
                     <option value="Iniciante">Iniciante</option>
                     <option value="Intermediário">Intermediário</option>

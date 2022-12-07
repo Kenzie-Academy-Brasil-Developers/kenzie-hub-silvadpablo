@@ -1,14 +1,12 @@
-import { useState } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 
 export const UserContext = createContext({})
 
 export function UserProvider ({ children }) {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [token, setToken] = useState(null)
+  const navigate = useNavigate()
 
     async function CreateUser ( data ) {
         try {
@@ -16,7 +14,7 @@ export function UserProvider ({ children }) {
             toast.success("Conta criada com successo", {
               className: "toast"
             })
-            // navigate("/")
+            navigate("/")
             return response
           } catch (error) {
             const message = error.response.data.message
@@ -32,33 +30,8 @@ export function UserProvider ({ children }) {
           }
     }
 
-    async function LoginUser ( data ) {
-        try {
-            const response = await api.post("sessions", data)
-            if (response.request.statusText === "OK") {
-                localStorage.setItem("KenzieHubToken", response.data.token)
-                setToken(response.data.token)
-                localStorage.setItem("KenzieHubUser", JSON.stringify(response.data.user))
-                setUser(response.data.user)
-                toast.success(`Que bom te ver, ${response.data.user.name}!`, {
-                className: "toast"
-                })
-                setLoading(true)
-                return response
-            } else {
-                throw response
-            }
-        } catch (error) {
-            toast.error(error.response.data.message, {
-                className: "toast"
-            })
-        } finally {
-            setLoading(false)
-        }
-    }
-
     return (
-        <UserContext.Provider value={{CreateUser, LoginUser, user, loading, token}}>
+        <UserContext.Provider value={{CreateUser}}>
             {children}
         </UserContext.Provider>
     )

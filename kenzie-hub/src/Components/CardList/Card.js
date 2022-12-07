@@ -6,6 +6,7 @@ export const Card = styled.li`
     border-radius: var(--radius);
     max-width: 100%;
     padding: 13px 22px;
+    cursor: pointer;
 
     :hover {
         background-color: var(--grey2);

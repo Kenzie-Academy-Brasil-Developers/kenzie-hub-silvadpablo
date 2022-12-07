@@ -22,10 +22,6 @@ export const BigButtons = styled.button`
 
 export const BlackButtons = styled(BigButtons)`
     background-color: var(--grey1);
-    position: relative;
-    bottom: 65px;
-    width: 87%;
-
     :hover{
         background-color: var(--grey2);
     }

@@ -5,17 +5,12 @@ export function PrimaryButton ( { text } ) {
     return <BigButtons>{text}</BigButtons>
 }
 
-export function DialogButton ( { text, setDialogOpen, techs, setTechs, register, handleNewTech, handleSubmit } ) {
-    // const newTech = [...techs, {
-    //     title: "teste",
-    //     status: "Iniciante"
-    // }]
-
-    // function closeDialog () {
-    //     setTechs(newTech)
-    //     // setDialogOpen(false)
-    // }
+export function DialogButton ( { text, handleNewTech, handleSubmit } ) {
     return <BigButtons onClick={handleSubmit(handleNewTech)}>{text}</BigButtons>
+}
+
+export function UpdateDialogButton ( { text, handleUpdateTech, handleSubmit } ) {
+    return <BigButtons onClick={handleSubmit(handleUpdateTech)}>{text}</BigButtons>
 }
 
 export function BlackButton ( { text } ) {
@@ -24,6 +19,11 @@ export function BlackButton ( { text } ) {
         navigate("/register")
     }
     return <BlackButtons onClick={goToRegister}>{text}</BlackButtons>
+}
+
+export function DeleteButton ( { text, handleDelete } ) {
+    
+    return <BlackButtons onClick={handleDelete}>{text}</BlackButtons>
 }
 
 export function SmallButton ( { text } ) {

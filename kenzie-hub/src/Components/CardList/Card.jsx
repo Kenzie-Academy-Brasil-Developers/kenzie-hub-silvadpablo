@@ -1,13 +1,24 @@
 import { Card } from "./Card";
-import trash from "../../Imgs/trash.png"
+import { useContext } from "react";
+import { TechContext } from "../../Contexts/techContext";
 
-export function EachCard ( { title, status } ) {
+export function EachCard ( { id, title, status, updateDialog, setUpdateDialog } ) {
+    const { setCurrentTech } = useContext(TechContext)
+
+    function updateDialog ( event ) {
+        setUpdateDialog(true)
+        const current = {
+            name: event.target.firstElementChild.innerText,
+            id: id,
+            status: status
+        }
+        setCurrentTech(current)
+    }
     return (
-        <Card className="flex justify-between">
+        <Card className="flex justify-between" onClick={updateDialog}>
             <h2>{title}</h2>
             <div className="flex remove-div">
                 <p>{status}</p>
-                <img src={trash} alt="remove icon" />
             </div>
         </Card>
     )
