@@ -1,27 +1,32 @@
-import { StyledEye, StyledInput, StyledLabel, StyledSelect } from "./Inputs";
+import { StyledEye, StyledInput, StyledLabel } from "./Inputs";
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export function Input ( { id, placeholder, type, text, register } ) {
+export function Input ( { id, placeholder, type, text, register, disabled, value } ) {
     return (
         <>
             <StyledLabel htmlFor={id}>{text}</StyledLabel>
-            <StyledInput id={id} placeholder={placeholder} type={type} {...register}/>
+            {
+                disabled ?
+                <StyledInput value={value} disabled id={id} placeholder={placeholder} type={type} {...register}/>
+                :
+                <StyledInput id={id} placeholder={placeholder} type={type} {...register}/>
+            }
         </>
     )
 }
 
 export function PasswordInput ( {placeholder, text, id, register} ) {
     const [eye, setEye] = useState(true)
-    const [confirmEye, setConfirmEye] = useState()
+    // const [confirmEye, setConfirmEye] = useState()
 
-    useEffect(() => {
-        setEye(!eye)
-    }, [])
+    // useEffect(() => {
+    //     setEye(!eye)
+    // }, [])
 
-    useEffect(() => {
-        setConfirmEye(!confirmEye)
-    }, [])
+    // useEffect(() => {
+    //     setConfirmEye(!confirmEye)
+    // }, [])
 
     function changeType ( event ) {
         const input = event.target.parentElement.previousSibling

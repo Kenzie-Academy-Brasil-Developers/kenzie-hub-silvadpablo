@@ -22,7 +22,6 @@ export const Dialogs = styled.dialog`
     }
 
     .diag-body {
-        /* gap: 22px; */
         padding: 20px;
     }
 
@@ -46,6 +45,10 @@ export const Dialogs = styled.dialog`
         color: var(--negative);
         text-align: right;
         margin-top: 10px;
+    }
+
+    .button-div {
+        gap: 10px;
     }
 
     @media(max-width: 850px) {
